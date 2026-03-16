@@ -21,14 +21,19 @@ import Layout from '../layouts/Layout.astro';
         <p class="text-xs text-terminal-text-muted mt-0.5">Software Engineer</p>
       </div>
       <div class="flex items-center gap-3">
-        <!-- Dark mode toggle (decorative — always dark) -->
+        <!-- Theme toggle -->
         <button
           id="theme-toggle"
           class="p-2 rounded-md border border-terminal-border text-terminal-text-muted hover:text-terminal-text-bright hover:border-terminal-text-muted transition-colors duration-200 cursor-pointer"
           aria-label="Toggle theme"
         >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <!-- Moon icon (shown in dark mode) -->
+          <svg id="icon-moon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <!-- Sun icon (shown in light mode) -->
+          <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
         </button>
         <!-- Resume button -->
@@ -96,15 +101,15 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- ─── TAB: ABOUT ─── -->
       <section id="tab-about" class="tab-pane" role="tabpanel">
-        <!-- Shell prompt -->
+        <!-- Shell prompt with typewriter -->
         <div class="mb-6 text-sm">
           <span class="text-terminal-accent-indigo">muratlevent@server</span>
           <span class="text-terminal-accent-cyan ml-1">~&gt;</span>
-          <span class="text-terminal-text-muted ml-2">cat about.md</span>
+          <span class="ml-2"><span id="typewriter-target" class="text-terminal-text-muted"></span><span id="typewriter-cursor" class="typewriter-cursor"></span></span>
         </div>
 
-        <!-- Bio content -->
-        <div class="space-y-5 text-sm leading-relaxed">
+        <!-- Bio content (hidden until typewriter completes) -->
+        <div id="about-content" class="about-reveal space-y-5 text-sm leading-relaxed">
           <p class="text-terminal-text-bright">
             I'm Murat — a software engineer based in Turkey who builds robust web applications,
             data extraction systems, and AI-driven mobile tools. I value clean code, the open-source
@@ -348,11 +353,11 @@ import Layout from '../layouts/Layout.astro';
   <!-- ════════════════ TAB SWITCHING SCRIPT ════════════════ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      /* ── Tab switching ── */
       const tabs = document.querySelectorAll('.tab-btn');
       const panes = document.querySelectorAll('.tab-pane');
 
       function activateTab(tabName) {
-        // Update tab buttons
         tabs.forEach(btn => {
           const isActive = btn.dataset.tab === tabName;
           btn.classList.toggle('border-terminal-text-bright', isActive);
@@ -362,26 +367,65 @@ import Layout from '../layouts/Layout.astro';
           btn.setAttribute('aria-selected', String(isActive));
         });
 
-        // Update panes
         panes.forEach(pane => {
           const isActive = pane.id === `tab-${tabName}`;
           pane.classList.toggle('hidden', !isActive);
         });
 
-        // Scroll content area to top
         const contentArea = document.getElementById('content-area');
         if (contentArea) contentArea.scrollTop = 0;
       }
 
-      // Click handlers
       tabs.forEach(btn => {
         btn.addEventListener('click', () => {
           activateTab(btn.dataset.tab);
         });
       });
 
-      // Initialize first tab
       activateTab('about');
+
+      /* ── Theme toggle ── */
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById('theme-toggle');
+      const iconMoon = document.getElementById('icon-moon');
+      const iconSun = document.getElementById('icon-sun');
+
+      function syncIcons() {
+        const isLight = html.classList.contains('light');
+        iconMoon.classList.toggle('hidden', isLight);
+        iconSun.classList.toggle('hidden', !isLight);
+      }
+
+      syncIcons();
+
+      toggleBtn.addEventListener('click', () => {
+        html.classList.toggle('light');
+        localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+        syncIcons();
+      });
+
+      /* ── Typewriter effect ── */
+      const target = document.getElementById('typewriter-target');
+      const cursor = document.getElementById('typewriter-cursor');
+      const aboutContent = document.getElementById('about-content');
+      const text = 'cat about.md';
+      let i = 0;
+
+      function typeChar() {
+        if (i < text.length) {
+          target.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 60 + Math.random() * 40);
+        } else {
+          // Typing done — reveal bio content
+          setTimeout(() => {
+            aboutContent.classList.add('visible');
+          }, 300);
+        }
+      }
+
+      // Start typewriter after a short initial delay
+      setTimeout(typeChar, 500);
     });
   </script>
 </Layout>
