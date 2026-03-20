@@ -25,6 +25,7 @@ const { tabs, activeTab = 'about' } = Astro.props;
           ]}
           data-tab={tab.id}
           role="tab"
+          tabindex={tab.id === activeTab ? '0' : '-1'}
           aria-selected={tab.id === activeTab ? 'true' : 'false'}
           aria-controls={`tab-${tab.id}`}
           id={`tab-btn-${tab.id}`}

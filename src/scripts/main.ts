@@ -5,16 +5,17 @@ export function initTabs(): void {
   const contentArea = document.getElementById('content-area');
 
   function activateTab(tabName: string): void {
-    tabs.forEach(btn => {
+    tabs.forEach((btn) => {
       const isActive = btn.dataset.tab === tabName;
       btn.classList.toggle('border-terminal-text-bright', isActive);
       btn.classList.toggle('text-terminal-text-bright', isActive);
       btn.classList.toggle('border-transparent', !isActive);
       btn.classList.toggle('text-terminal-text-muted', !isActive);
       btn.setAttribute('aria-selected', String(isActive));
+      btn.setAttribute('tabindex', isActive ? '0' : '-1');
     });
 
-    panes.forEach(pane => {
+    panes.forEach((pane) => {
       const isActive = pane.id === `tab-${tabName}`;
       pane.classList.toggle('hidden', !isActive);
     });
@@ -23,7 +24,7 @@ export function initTabs(): void {
   }
 
   // Click handlers
-  tabs.forEach(btn => {
+  tabs.forEach((btn) => {
     btn.addEventListener('click', () => {
       const tabName = btn.dataset.tab;
       if (tabName) activateTab(tabName);
@@ -94,7 +95,7 @@ export function initTypewriter(): void {
 
   function typeChar(): void {
     if (!target) return;
-    
+
     if (i < text.length) {
       target.textContent += text.charAt(i);
       i++;
