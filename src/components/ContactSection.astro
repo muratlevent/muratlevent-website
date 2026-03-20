@@ -1,0 +1,90 @@
+---
+interface ContactItem {
+  key: string;
+  value: string;
+  href?: string;
+}
+
+interface Props {
+  items: ContactItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section id="tab-contact" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-contact">
+  <!-- Shell prompt -->
+  <div class="mb-4 text-sm">
+    <span class="text-terminal-accent-indigo">muratlevent@server</span>
+    <span class="text-terminal-accent-cyan ml-1">~&gt;</span>
+    <span class="text-terminal-text-muted ml-2">cat contact.yml</span>
+  </div>
+
+  <!-- YAML-styled config block -->
+  <div class="p-5 rounded-md bg-terminal-surface border border-terminal-border font-mono text-sm leading-loose">
+    <div>
+      <span class="text-terminal-accent-cyan">---</span>
+    </div>
+    <div>
+      <span class="text-terminal-accent-indigo">contact</span><span class="text-terminal-text-muted">:</span>
+    </div>
+    {items.map((item) => (
+      <div class="pl-4 flex items-center gap-2">
+        <span class="text-terminal-accent-cyan">{item.key}</span><span class="text-terminal-text-muted">:</span>
+        {item.href ? (
+          <a 
+            href={item.href} 
+            target="_blank" 
+            rel="noopener" 
+            class="text-terminal-accent-green ml-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo"
+          >
+            "{item.value}"
+          </a>
+        ) : (
+          <span class="text-terminal-accent-green ml-2">"{item.value}"</span>
+        )}
+        {item.key === 'email' && (
+          <button
+            type="button"
+            class="copy-btn p-1 rounded hover:bg-terminal-border/50 transition-colors text-terminal-text-muted hover:text-terminal-text-bright focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo"
+            data-copy={item.value}
+            aria-label="Copy email to clipboard"
+            title="Copy to clipboard"
+          >
+            <svg class="w-3.5 h-3.5 copy-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <svg class="w-3.5 h-3.5 check-icon hidden text-terminal-accent-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      if (!text) return;
+      
+      try {
+        await navigator.clipboard.writeText(text);
+        const copyIcon = btn.querySelector('.copy-icon');
+        const checkIcon = btn.querySelector('.check-icon');
+        
+        copyIcon?.classList.add('hidden');
+        checkIcon?.classList.remove('hidden');
+        
+        setTimeout(() => {
+          copyIcon?.classList.remove('hidden');
+          checkIcon?.classList.add('hidden');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+  });
+</script>

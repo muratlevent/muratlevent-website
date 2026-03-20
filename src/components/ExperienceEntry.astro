@@ -1,0 +1,52 @@
+---
+type BadgeColor = 'indigo' | 'cyan' | 'green';
+
+interface Badge {
+  text: string;
+  color: BadgeColor;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  period: string;
+  description: string;
+  badges?: Badge[];
+  isCurrent?: boolean;
+}
+
+const { title, subtitle, period, description, badges = [], isCurrent = false } = Astro.props;
+
+const colorClasses: Record<BadgeColor, string> = {
+  indigo: 'bg-terminal-accent-indigo/10 text-terminal-accent-indigo border-terminal-accent-indigo/20',
+  cyan: 'bg-terminal-accent-cyan/10 text-terminal-accent-cyan border-terminal-accent-cyan/20',
+  green: 'bg-terminal-accent-green/10 text-terminal-accent-green border-terminal-accent-green/20',
+};
+---
+
+<div class="relative">
+  <div class:list={[
+    'absolute -left-[25px] top-1 w-2 h-2 rounded-full ring-4 ring-terminal-bg',
+    isCurrent ? 'bg-terminal-accent-indigo animate-pulse' : 'bg-terminal-text-muted'
+  ]}></div>
+  <div class="space-y-2">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+      <h3 class="text-sm font-semibold text-terminal-text-bright">
+        {title}{subtitle && <span class="text-terminal-text-muted font-normal"> — {subtitle}</span>}
+      </h3>
+      <span class="text-[10px] text-terminal-text-muted px-2 py-0.5 rounded-full border border-terminal-border whitespace-nowrap">
+        {period}
+      </span>
+    </div>
+    <p class="text-xs text-terminal-text-muted leading-relaxed">{description}</p>
+    {badges.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 pt-1">
+        {badges.map((badge) => (
+          <span class={`px-2 py-0.5 text-[10px] rounded-full border ${colorClasses[badge.color]}`}>
+            {badge.text}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+</div>

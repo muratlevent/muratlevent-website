@@ -1,0 +1,25 @@
+---
+import GithubIcon from './icons/GithubIcon.astro';
+---
+
+<footer class="shrink-0 pt-6 mt-auto flex items-center justify-between text-[10px] text-terminal-text-muted border-t border-terminal-border">
+  <span>© {new Date().getFullYear()} Murat Levent</span>
+  <div class="flex items-center gap-3">
+    <a 
+      href="https://muratlevent.com" 
+      class="hover:text-terminal-text transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:rounded"
+    >
+      muratlevent.com
+    </a>
+    <span class="text-terminal-border">|</span>
+    <a 
+      href="https://github.com/muratlevent" 
+      target="_blank" 
+      rel="noopener" 
+      class="hover:text-terminal-text transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:rounded flex items-center gap-1"
+    >
+      <GithubIcon class="w-3 h-3" />
+      GitHub
+    </a>
+  </div>
+</footer>

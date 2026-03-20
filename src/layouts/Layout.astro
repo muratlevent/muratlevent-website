@@ -4,11 +4,15 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://muratlevent.com');
 
 const {
   title = 'Murat Levent — Software Engineer',
-  description = 'Software engineer building robust web applications, data extraction systems, and AI-driven mobile tools.'
+  description = 'Software engineer building robust web applications, data extraction systems, and AI-driven mobile tools.',
+  image = '/og-image.png'
 } = Astro.props;
 ---
 
@@ -19,8 +23,38 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Murat Levent" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || 'https://muratlevent.com')} />
+    <meta property="og:site_name" content="Murat Levent" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site || 'https://muratlevent.com')} />
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+    
     <title>{title}</title>
+    
     <!-- Prevent FOUC: apply saved theme before first paint -->
     <script is:inline>
       (function() {

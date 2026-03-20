@@ -1,0 +1,32 @@
+---
+import MoonIcon from './icons/MoonIcon.astro';
+import SunIcon from './icons/SunIcon.astro';
+import DownloadIcon from './icons/DownloadIcon.astro';
+---
+
+<header class="flex items-start justify-between shrink-0 mb-6">
+  <div>
+    <h1 class="text-lg font-bold text-terminal-text-bright tracking-tight">Murat Levent</h1>
+    <p class="text-xs text-terminal-text-muted mt-0.5">Software Engineer</p>
+  </div>
+  <div class="flex items-center gap-3">
+    <!-- Theme toggle -->
+    <button
+      id="theme-toggle"
+      class="p-2 rounded-md border border-terminal-border text-terminal-text-muted hover:text-terminal-text-bright hover:border-terminal-text-muted transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-terminal-bg"
+      aria-label="Toggle theme"
+    >
+      <MoonIcon id="icon-moon" />
+      <SunIcon id="icon-sun" class="w-4 h-4 hidden" />
+    </button>
+    <!-- Resume button -->
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      class="flex items-center gap-1.5 px-3 py-1.5 text-xs border border-terminal-border text-terminal-text-muted hover:text-terminal-text-bright hover:border-terminal-text-muted transition-colors duration-200 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-terminal-bg"
+    >
+      <DownloadIcon />
+      Resume
+    </a>
+  </div>
+</header>

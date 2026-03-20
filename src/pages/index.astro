@@ -1,111 +1,105 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MobileBar from '../components/MobileBar.astro';
+import Header from '../components/Header.astro';
+import TabNav from '../components/TabNav.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceEntry from '../components/ExperienceEntry.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+
+const tabs = [
+  { id: 'about', label: 'about' },
+  { id: 'projects', label: 'projects' },
+  { id: 'experience', label: 'experience' },
+  { id: 'community', label: 'community' },
+  { id: 'contact', label: 'contact' },
+];
+
+const publicProjects = [
+  {
+    href: 'https://github.com/muratlevent/keyboard',
+    title: 'Keyboard Simulator',
+    description: 'Interactive 3D mechanical keyboard demo',
+    badges: [
+      { text: 'JavaScript', color: 'indigo' as const },
+      { text: 'Three.js', color: 'cyan' as const },
+    ],
+  },
+  {
+    href: 'https://github.com/muratlevent/ShopifyCategoryFetcher',
+    title: 'Shopify Category Fetcher',
+    description: 'API scraping tool',
+    badges: [{ text: 'Java', color: 'cyan' as const }],
+  },
+  {
+    href: 'https://github.com/muratlevent/tweetrends',
+    title: 'X (Twitter) Trend Scraper',
+    description: 'Trend keyword analysis scraper',
+    badges: [
+      { text: 'Python', color: 'indigo' as const },
+      { text: 'Playwright', color: 'cyan' as const },
+    ],
+  },
+  {
+    href: 'https://github.com/muratlevent/gootrend',
+    title: 'Gootrend',
+    description: 'Google Trends keyword extraction tool',
+    badges: [
+      { text: 'Python', color: 'indigo' as const },
+      { text: 'pytrends', color: 'cyan' as const },
+    ],
+  },
+  {
+    href: 'https://github.com/muratlevent/shopify-app-store-scraper',
+    title: 'Shopify App Store Scraper',
+    description: 'Maintained fork with reliability and data extraction fixes',
+    badges: [
+      { text: 'Python', color: 'indigo' as const },
+      { text: 'Scrapy', color: 'cyan' as const },
+      { text: 'Fork', color: 'green' as const },
+    ],
+  },
+  {
+    href: 'https://github.com/muratlevent/QuizApp',
+    title: 'Quiz App',
+    description: 'Kahoot-inspired backend',
+    badges: [
+      { text: 'Spring Boot', color: 'cyan' as const },
+      { text: 'Java', color: 'cyan' as const },
+    ],
+  },
+];
+
+const contactItems = [
+  { key: 'email', value: 'contact@muratlevent.com' },
+  { key: 'github', value: 'github.com/muratlevent', href: 'https://github.com/muratlevent' },
+  { key: 'status', value: 'Open to new opportunities' },
+  { key: 'location', value: 'Turkey' },
+];
 ---
 
 <Layout>
-  <!-- Mobile mosh session bar -->
-  <div class="fixed top-0 left-0 w-full z-50 flex items-center justify-center gap-2 py-1 bg-terminal-surface/80 backdrop-blur-sm border-b border-terminal-border text-[10px] text-terminal-text-muted md:hidden">
-    <span class="inline-block w-1.5 h-1.5 rounded-full bg-terminal-accent-green animate-pulse"></span>
-    <span>mosh session established</span>
-    <span class="text-terminal-border">•</span>
-    <span>workspace synced</span>
-  </div>
+  <MobileBar />
 
   <!-- Main container -->
   <div class="max-w-3xl mx-auto px-6 pt-16 md:pt-12 pb-6 flex flex-col h-full">
-
-    <!-- ════════════════ HEADER ════════════════ -->
-    <header class="flex items-start justify-between shrink-0 mb-6">
-      <div>
-        <h1 class="text-lg font-bold text-terminal-text-bright tracking-tight">Murat Levent</h1>
-        <p class="text-xs text-terminal-text-muted mt-0.5">Software Engineer</p>
-      </div>
-      <div class="flex items-center gap-3">
-        <!-- Theme toggle -->
-        <button
-          id="theme-toggle"
-          class="p-2 rounded-md border border-terminal-border text-terminal-text-muted hover:text-terminal-text-bright hover:border-terminal-text-muted transition-colors duration-200 cursor-pointer"
-          aria-label="Toggle theme"
-        >
-          <!-- Moon icon (shown in dark mode) -->
-          <svg id="icon-moon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-          </svg>
-          <!-- Sun icon (shown in light mode) -->
-          <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-        </button>
-        <!-- Resume button -->
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          class="flex items-center gap-1.5 px-3 py-1.5 text-xs border border-terminal-border text-terminal-text-muted hover:text-terminal-text-bright hover:border-terminal-text-muted transition-colors duration-200 rounded-md"
-        >
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
-          Resume
-        </a>
-      </div>
-    </header>
-
-    <!-- ════════════════ TAB NAVIGATION ════════════════ -->
-    <nav class="shrink-0 mb-6 border-b border-terminal-border">
-      <ul class="flex gap-1 -mb-px overflow-x-auto scrollbar-hide" role="tablist">
-        <li>
-          <button
-            class="tab-btn px-3 py-2 text-xs transition-colors duration-200 border-b-2 border-transparent hover:text-terminal-text-bright whitespace-nowrap cursor-pointer"
-            data-tab="about"
-            role="tab"
-            aria-selected="true"
-          >~/about</button>
-        </li>
-        <li>
-          <button
-            class="tab-btn px-3 py-2 text-xs transition-colors duration-200 border-b-2 border-transparent hover:text-terminal-text-bright whitespace-nowrap cursor-pointer"
-            data-tab="projects"
-            role="tab"
-            aria-selected="false"
-          >~/projects</button>
-        </li>
-        <li>
-          <button
-            class="tab-btn px-3 py-2 text-xs transition-colors duration-200 border-b-2 border-transparent hover:text-terminal-text-bright whitespace-nowrap cursor-pointer"
-            data-tab="experience"
-            role="tab"
-            aria-selected="false"
-          >~/experience</button>
-        </li>
-        <li>
-          <button
-            class="tab-btn px-3 py-2 text-xs transition-colors duration-200 border-b-2 border-transparent hover:text-terminal-text-bright whitespace-nowrap cursor-pointer"
-            data-tab="community"
-            role="tab"
-            aria-selected="false"
-          >~/community</button>
-        </li>
-        <li>
-          <button
-            class="tab-btn px-3 py-2 text-xs transition-colors duration-200 border-b-2 border-transparent hover:text-terminal-text-bright whitespace-nowrap cursor-pointer"
-            data-tab="contact"
-            role="tab"
-            aria-selected="false"
-          >~/contact</button>
-        </li>
-      </ul>
-    </nav>
+    <Header />
+    <TabNav tabs={tabs} />
 
     <!-- ════════════════ CONTENT PANES ════════════════ -->
     <main class="flex-1 min-h-0 overflow-y-auto scrollbar-hide" id="content-area">
 
       <!-- ─── TAB: ABOUT ─── -->
-      <section id="tab-about" class="tab-pane" role="tabpanel">
+      <section id="tab-about" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-about">
         <!-- Shell prompt with typewriter -->
         <div class="mb-6 text-sm">
           <span class="text-terminal-accent-indigo">muratlevent@server</span>
           <span class="text-terminal-accent-cyan ml-1">~&gt;</span>
-          <span class="ml-2"><span id="typewriter-target" class="text-terminal-text-muted"></span><span id="typewriter-cursor" class="typewriter-cursor"></span></span>
+          <span class="ml-2">
+            <span id="typewriter-target" class="text-terminal-text-muted"></span>
+            <span id="typewriter-cursor" class="typewriter-cursor"></span>
+          </span>
         </div>
 
         <!-- Bio content (hidden until typewriter completes) -->
@@ -134,7 +128,7 @@ import Layout from '../layouts/Layout.astro';
       </section>
 
       <!-- ─── TAB: PROJECTS ─── -->
-      <section id="tab-projects" class="tab-pane hidden" role="tabpanel">
+      <section id="tab-projects" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-projects">
         <!-- Private / Current Focus -->
         <div class="mb-8">
           <h2 class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
@@ -157,7 +151,6 @@ import Layout from '../layouts/Layout.astro';
                 <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-green/10 text-terminal-accent-green border border-terminal-accent-green/20">AI</span>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -167,135 +160,40 @@ import Layout from '../layouts/Layout.astro';
             <span>🌐</span> Public / Open Source
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- Keyboard -->
-            <a href="https://github.com/muratlevent/keyboard" target="_blank" rel="noopener"
-              class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group">
-              <div class="flex items-center gap-2 mb-1.5">
-                <svg class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <h3 class="text-xs font-semibold text-terminal-text-bright">Keyboard Simulator</h3>
-              </div>
-              <p class="text-[10px] text-terminal-text-muted mb-2">Interactive 3D mechanical keyboard demo</p>
-              <div class="flex flex-wrap gap-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">JavaScript</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Three.js</span>
-              </div>
-            </a>
-
-            <!-- Shopify Category Fetcher -->
-            <a href="https://github.com/muratlevent/ShopifyCategoryFetcher" target="_blank" rel="noopener"
-              class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group">
-              <div class="flex items-center gap-2 mb-1.5">
-                <svg class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <h3 class="text-xs font-semibold text-terminal-text-bright">Shopify Category Fetcher</h3>
-              </div>
-              <p class="text-[10px] text-terminal-text-muted mb-2">API scraping tool</p>
-              <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Java</span>
-            </a>
-
-            <!-- X Trend Scraper -->
-            <a href="https://github.com/muratlevent/tweetrends" target="_blank" rel="noopener"
-              class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group">
-              <div class="flex items-center gap-2 mb-1.5">
-                <svg class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <h3 class="text-xs font-semibold text-terminal-text-bright">X (Twitter) Trend Scraper</h3>
-              </div>
-              <p class="text-[10px] text-terminal-text-muted mb-2">Trend keyword analysis scraper</p>
-              <div class="flex flex-wrap gap-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Python</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Playwright</span>
-              </div>
-            </a>
-
-            <!-- Gootrend -->
-            <a href="https://github.com/muratlevent/gootrend" target="_blank" rel="noopener"
-              class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group">
-              <div class="flex items-center gap-2 mb-1.5">
-                <svg class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <h3 class="text-xs font-semibold text-terminal-text-bright">Gootrend</h3>
-              </div>
-              <p class="text-[10px] text-terminal-text-muted mb-2">Google Trends keyword extraction tool</p>
-              <div class="flex flex-wrap gap-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Python</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">pytrends</span>
-              </div>
-            </a>
-
-            <!-- Shopify App Store Scraper (Fork) -->
-            <a href="https://github.com/muratlevent/shopify-app-store-scraper" target="_blank" rel="noopener"
-              class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group">
-              <div class="flex items-center gap-2 mb-1.5">
-                <svg class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <h3 class="text-xs font-semibold text-terminal-text-bright">Shopify App Store Scraper</h3>
-              </div>
-              <p class="text-[10px] text-terminal-text-muted mb-2">Maintained fork with reliability and data extraction fixes</p>
-              <div class="flex flex-wrap gap-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Python</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Scrapy</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-green/10 text-terminal-accent-green border border-terminal-accent-green/20">Fork</span>
-              </div>
-            </a>
-
-            <!-- Quiz App -->
-            <a href="https://github.com/muratlevent/QuizApp" target="_blank" rel="noopener"
-              class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group">
-              <div class="flex items-center gap-2 mb-1.5">
-                <svg class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <h3 class="text-xs font-semibold text-terminal-text-bright">Quiz App</h3>
-              </div>
-              <p class="text-[10px] text-terminal-text-muted mb-2">Kahoot-inspired backend</p>
-              <div class="flex flex-wrap gap-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Spring Boot</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Java</span>
-              </div>
-            </a>
+            {publicProjects.map((project) => (
+              <ProjectCard {...project} />
+            ))}
           </div>
         </div>
       </section>
 
       <!-- ─── TAB: EXPERIENCE ─── -->
-      <section id="tab-experience" class="tab-pane hidden" role="tabpanel">
+      <section id="tab-experience" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-experience">
         <div class="relative pl-6 border-l border-terminal-border space-y-8">
-          <!-- Entry 1 -->
-          <div class="relative">
-            <div class="absolute -left-[25px] top-1 w-2 h-2 rounded-full bg-terminal-accent-indigo ring-4 ring-terminal-bg"></div>
-            <div class="space-y-2">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <h3 class="text-sm font-semibold text-terminal-text-bright">Independent Software Engineer</h3>
-                <span class="text-[10px] text-terminal-text-muted px-2 py-0.5 rounded-full border border-terminal-border whitespace-nowrap">Jan 2026 — Present</span>
-              </div>
-              <p class="text-xs text-terminal-text-muted leading-relaxed">
-                Developing proprietary AI applications (PipeRead) and robust Python-based data scraping scripts. Building end-to-end mobile experiences with React Native and integrating AI pipelines.
-              </p>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-green/10 text-terminal-accent-green border border-terminal-accent-green/20">current</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Entry 2 -->
-          <div class="relative">
-            <div class="absolute -left-[25px] top-1 w-2 h-2 rounded-full bg-terminal-text-muted ring-4 ring-terminal-bg"></div>
-            <div class="space-y-2">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <h3 class="text-sm font-semibold text-terminal-text-bright">Software Engineer — Prisync</h3>
-                <span class="text-[10px] text-terminal-text-muted px-2 py-0.5 rounded-full border border-terminal-border whitespace-nowrap">Jan 2022 — Dec 2025</span>
-              </div>
-              <p class="text-xs text-terminal-text-muted leading-relaxed">
-                Shell Team Member. Focused on Python, large-scale Web Scraping pipelines, AWS architecture, and Full-stack development. 4 years of optimizing data flows.
-              </p>
-              <div class="flex flex-wrap gap-1.5 pt-1">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Python</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">AWS</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Web Scraping</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Full-stack</span>
-              </div>
-            </div>
-          </div>
+          <ExperienceEntry
+            title="Independent Software Engineer"
+            period="Jan 2026 — Present"
+            description="Developing proprietary AI applications (PipeRead) and robust Python-based data scraping scripts. Building end-to-end mobile experiences with React Native and integrating AI pipelines."
+            badges={[{ text: 'current', color: 'green' }]}
+            isCurrent={true}
+          />
+          <ExperienceEntry
+            title="Software Engineer"
+            subtitle="Prisync"
+            period="Jan 2022 — Dec 2025"
+            description="Shell Team Member. Focused on Python, large-scale Web Scraping pipelines, AWS architecture, and Full-stack development. 4 years of optimizing data flows."
+            badges={[
+              { text: 'Python', color: 'indigo' },
+              { text: 'AWS', color: 'cyan' },
+              { text: 'Web Scraping', color: 'indigo' },
+              { text: 'Full-stack', color: 'cyan' },
+            ]}
+          />
         </div>
       </section>
 
       <!-- ─── TAB: COMMUNITY ─── -->
-      <section id="tab-community" class="tab-pane hidden" role="tabpanel">
+      <section id="tab-community" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-community">
         <div class="space-y-8">
           <!-- FOSDEM -->
           <div>
@@ -333,131 +231,16 @@ import Layout from '../layouts/Layout.astro';
       </section>
 
       <!-- ─── TAB: CONTACT ─── -->
-      <section id="tab-contact" class="tab-pane hidden" role="tabpanel">
-        <!-- Shell prompt -->
-        <div class="mb-4 text-sm">
-          <span class="text-terminal-accent-indigo">muratlevent@server</span>
-          <span class="text-terminal-accent-cyan ml-1">~&gt;</span>
-          <span class="text-terminal-text-muted ml-2">cat contact.yml</span>
-        </div>
-
-        <!-- YAML-styled config block -->
-        <div class="p-5 rounded-md bg-terminal-surface border border-terminal-border font-mono text-sm leading-loose">
-          <div>
-            <span class="text-terminal-accent-cyan">---</span>
-          </div>
-          <div>
-            <span class="text-terminal-accent-indigo">contact</span><span class="text-terminal-text-muted">:</span>
-          </div>
-          <div class="pl-4">
-            <span class="text-terminal-accent-cyan">email</span><span class="text-terminal-text-muted">:</span>
-            <span class="text-terminal-accent-green ml-2">"contact@muratlevent.com"</span>
-          </div>
-          <div class="pl-4">
-            <span class="text-terminal-accent-cyan">github</span><span class="text-terminal-text-muted">:</span>
-            <a href="https://github.com/muratlevent" target="_blank" rel="noopener" class="text-terminal-accent-green ml-2 hover:underline">"github.com/muratlevent"</a>
-          </div>
-          <div class="pl-4">
-            <span class="text-terminal-accent-cyan">status</span><span class="text-terminal-text-muted">:</span>
-            <span class="text-terminal-accent-green ml-2">"Open to new opportunities"</span>
-          </div>
-          <div class="pl-4">
-            <span class="text-terminal-accent-cyan">location</span><span class="text-terminal-text-muted">:</span>
-            <span class="text-terminal-accent-green ml-2">"Turkey"</span>
-          </div>
-        </div>
-      </section>
+      <ContactSection items={contactItems} />
 
     </main>
 
-    <!-- ════════════════ FOOTER ════════════════ -->
-    <footer class="shrink-0 pt-6 mt-auto flex items-center justify-between text-[10px] text-terminal-text-muted border-t border-terminal-border">
-      <span>© 2026 Murat Levent</span>
-      <div class="flex items-center gap-3">
-        <a href="https://muratlevent.com" class="hover:text-terminal-text transition-colors">muratlevent.com</a>
-        <span class="text-terminal-border">|</span>
-        <a href="https://github.com/muratlevent" target="_blank" rel="noopener" class="hover:text-terminal-text transition-colors">GitHub</a>
-      </div>
-    </footer>
-
+    <Footer />
   </div>
 
-  <!-- ════════════════ TAB SWITCHING SCRIPT ════════════════ -->
+  <!-- ════════════════ INITIALIZATION SCRIPT ════════════════ -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      /* ── Tab switching ── */
-      const tabs = document.querySelectorAll('.tab-btn');
-      const panes = document.querySelectorAll('.tab-pane');
-
-      function activateTab(tabName) {
-        tabs.forEach(btn => {
-          const isActive = btn.dataset.tab === tabName;
-          btn.classList.toggle('border-terminal-text-bright', isActive);
-          btn.classList.toggle('text-terminal-text-bright', isActive);
-          btn.classList.toggle('border-transparent', !isActive);
-          btn.classList.toggle('text-terminal-text-muted', !isActive);
-          btn.setAttribute('aria-selected', String(isActive));
-        });
-
-        panes.forEach(pane => {
-          const isActive = pane.id === `tab-${tabName}`;
-          pane.classList.toggle('hidden', !isActive);
-        });
-
-        const contentArea = document.getElementById('content-area');
-        if (contentArea) contentArea.scrollTop = 0;
-      }
-
-      tabs.forEach(btn => {
-        btn.addEventListener('click', () => {
-          activateTab(btn.dataset.tab);
-        });
-      });
-
-      activateTab('about');
-
-      /* ── Theme toggle ── */
-      const html = document.documentElement;
-      const toggleBtn = document.getElementById('theme-toggle');
-      const iconMoon = document.getElementById('icon-moon');
-      const iconSun = document.getElementById('icon-sun');
-
-      function syncIcons() {
-        const isLight = html.classList.contains('light');
-        iconMoon.classList.toggle('hidden', isLight);
-        iconSun.classList.toggle('hidden', !isLight);
-      }
-
-      syncIcons();
-
-      toggleBtn.addEventListener('click', () => {
-        html.classList.toggle('light');
-        localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
-        syncIcons();
-      });
-
-      /* ── Typewriter effect ── */
-      const target = document.getElementById('typewriter-target');
-      const cursor = document.getElementById('typewriter-cursor');
-      const aboutContent = document.getElementById('about-content');
-      const text = 'cat about.md';
-      let i = 0;
-
-      function typeChar() {
-        if (i < text.length) {
-          target.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeChar, 60 + Math.random() * 40);
-        } else {
-          // Typing done — reveal bio content
-          setTimeout(() => {
-            aboutContent.classList.add('visible');
-          }, 300);
-        }
-      }
-
-      // Start typewriter after a short initial delay
-      setTimeout(typeChar, 500);
-    });
+    import { init } from '../scripts/main';
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </Layout>

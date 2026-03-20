@@ -1,0 +1,37 @@
+---
+interface Tab {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  tabs: Tab[];
+  activeTab?: string;
+}
+
+const { tabs, activeTab = 'about' } = Astro.props;
+---
+
+<nav class="shrink-0 mb-6 border-b border-terminal-border" aria-label="Main navigation">
+  <ul class="flex gap-1 -mb-px overflow-x-auto scrollbar-hide" role="tablist">
+    {tabs.map((tab) => (
+      <li>
+        <button
+          class:list={[
+            'tab-btn px-3 py-2 text-xs transition-colors duration-200 border-b-2 hover:text-terminal-text-bright whitespace-nowrap cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-inset',
+            tab.id === activeTab 
+              ? 'border-terminal-text-bright text-terminal-text-bright' 
+              : 'border-transparent text-terminal-text-muted'
+          ]}
+          data-tab={tab.id}
+          role="tab"
+          aria-selected={tab.id === activeTab ? 'true' : 'false'}
+          aria-controls={`tab-${tab.id}`}
+          id={`tab-btn-${tab.id}`}
+        >
+          ~/{tab.label}
+        </button>
+      </li>
+    ))}
+  </ul>
+</nav>

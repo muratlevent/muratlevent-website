@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 — Page Not Found | Murat Levent" description="The page you're looking for doesn't exist.">
+  <div class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center max-w-md">
+      <!-- Terminal-style error -->
+      <div class="mb-8 p-6 rounded-lg bg-terminal-surface border border-terminal-border">
+        <div class="text-sm mb-4">
+          <span class="text-terminal-accent-indigo">muratlevent@server</span>
+          <span class="text-terminal-accent-cyan ml-1">~&gt;</span>
+          <span class="text-terminal-text-muted ml-2">cd /requested-page</span>
+        </div>
+        <div class="text-left font-mono">
+          <p class="text-red-400 text-sm">bash: cd: /requested-page: No such file or directory</p>
+        </div>
+      </div>
+
+      <!-- Error code -->
+      <h1 class="text-6xl font-bold text-terminal-accent-indigo mb-4">404</h1>
+      <p class="text-terminal-text-bright text-lg mb-2">Page Not Found</p>
+      <p class="text-terminal-text-muted text-sm mb-8">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+
+      <!-- Back to home -->
+      <a 
+        href="/"
+        class="inline-flex items-center gap-2 px-4 py-2 text-sm border border-terminal-border text-terminal-text-muted hover:text-terminal-text-bright hover:border-terminal-text-muted transition-colors duration-200 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Return to Home
+      </a>
+    </div>
+  </div>
+</Layout>
