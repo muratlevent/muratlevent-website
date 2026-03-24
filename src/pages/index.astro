@@ -89,7 +89,6 @@ const contactItems = [
 
     <!-- ════════════════ CONTENT PANES ════════════════ -->
     <main class="flex-1 min-h-0 overflow-y-auto scrollbar-hide" id="content-area">
-
       <!-- ─── TAB: ABOUT ─── -->
       <section id="tab-about" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-about">
         <!-- Shell prompt with typewriter -->
@@ -105,64 +104,111 @@ const contactItems = [
         <!-- Bio content (hidden until typewriter completes) -->
         <div id="about-content" class="about-reveal space-y-5 text-sm leading-relaxed">
           <p class="text-terminal-text-bright">
-            I'm Murat — a software engineer based in Turkey who builds robust web applications,
-            data extraction systems, and AI-driven mobile tools. I value clean code, the open-source
+            I'm Murat — a software engineer based in Turkey who builds robust web applications, data
+            extraction systems, and AI-driven mobile tools. I value clean code, the open-source
             ethos, and turning complex problems into intuitive solutions.
           </p>
 
           <!-- Status line -->
-          <div class="flex items-start gap-2 px-4 py-3 rounded-md bg-terminal-surface border border-terminal-border">
+          <div
+            class="flex items-start gap-2 px-4 py-3 rounded-md bg-terminal-surface border border-terminal-border"
+          >
             <span class="text-terminal-accent-green mt-0.5 shrink-0">▸</span>
             <p class="text-terminal-text-muted text-xs">
-              <span class="text-terminal-text">Currently exploring</span> AI-integrated DevTools
-              and advanced scraping architectures.
+              <span class="text-terminal-text">Currently exploring</span> AI-integrated DevTools and advanced
+              scraping architectures.
             </p>
           </div>
 
           <!-- Decorative terminal info -->
-          <div class="text-xs text-terminal-text-muted space-y-1 pt-4 border-t border-terminal-border">
-            <p><span class="text-terminal-accent-indigo">λ</span> Preferred stack: Python · TypeScript · React Native · AWS</p>
-            <p><span class="text-terminal-accent-indigo">λ</span> Editor: Neovim / VS Code · Terminal: Ghostty · Shell: Fish</p>
+          <div
+            class="text-xs text-terminal-text-muted space-y-1 pt-4 border-t border-terminal-border"
+          >
+            <p>
+              <span class="text-terminal-accent-indigo">λ</span> Preferred stack: Python · TypeScript
+              · React Native · AWS
+            </p>
+            <p>
+              <span class="text-terminal-accent-indigo">λ</span> Editor: Neovim / VS Code · Terminal:
+              Ghostty · Shell: Fish
+            </p>
           </div>
         </div>
       </section>
 
       <!-- ─── TAB: PROJECTS ─── -->
-      <section id="tab-projects" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-projects">
+      <section
+        id="tab-projects"
+        class="tab-pane hidden"
+        role="tabpanel"
+        aria-labelledby="tab-btn-projects"
+      >
         <!-- Currently Focus -->
         <div class="mb-8">
-          <h2 class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
+          <h2
+            class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
+          >
             <span>🎯</span> Currently Focus
           </h2>
           <div class="space-y-4">
-            <!-- PipeRead -->
-            <div class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200">
-              <div class="flex items-start justify-between mb-2">
-                <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead</h3>
-                <span class="text-[10px] text-terminal-accent-green px-2 py-0.5 rounded-full border border-terminal-accent-green/20">live</span>
-              </div>
-              <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
-                Personal AI librarian mobile app. Personalized recommendation flows and metadata extraction.
-              </p>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">React Native</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Expo</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Supabase</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-green/10 text-terminal-accent-green border border-terminal-accent-green/20">AI</span>
-              </div>
-            </div>
             <!-- PipeRead Mobile -->
-            <div class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200">
+            <div
+              class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200"
+            >
               <div class="flex items-start justify-between mb-2">
                 <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead Mobile</h3>
-                <span class="text-[10px] text-terminal-text-muted px-2 py-0.5 rounded-full border border-terminal-border">in development</span>
+                <span
+                  class="text-[10px] text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full border border-orange-400/20"
+                  >in development</span
+                >
               </div>
               <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
-                Native mobile companion app for pipeRead. Enhanced reading experience with offline support and push notifications.
+                Native mobile companion app for pipeRead. Enhancing experience with offline support
+                and push notifications.
               </p>
               <div class="flex flex-wrap gap-1.5">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">React Native</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Expo</span>
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  >React Native</span
+                >
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  >Expo</span
+                >
+              </div>
+            </div>
+            <!-- PipeRead -->
+            <div
+              class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200"
+            >
+              <div class="flex items-start justify-between mb-2">
+                <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead</h3>
+                <span
+                  class="text-[10px] text-terminal-accent-green px-2 py-0.5 rounded-full border border-terminal-accent-green/20"
+                  >live</span
+                >
+              </div>
+              <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
+                Personal AI librarian mobile app. Personalized recommendation flows and metadata
+                extraction.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  >React Native</span
+                >
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  >Expo</span
+                >
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  >Supabase</span
+                >
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-green/10 text-terminal-accent-green border border-terminal-accent-green/20"
+                  >AI</span
+                >
               </div>
             </div>
           </div>
@@ -170,19 +216,24 @@ const contactItems = [
 
         <!-- Public Open Source -->
         <div>
-          <h2 class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
+          <h2
+            class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
+          >
             <span>🌐</span> Public / Open Source
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {publicProjects.map((project) => (
-              <ProjectCard {...project} />
-            ))}
+            {publicProjects.map((project) => <ProjectCard {...project} />)}
           </div>
         </div>
       </section>
 
       <!-- ─── TAB: EXPERIENCE ─── -->
-      <section id="tab-experience" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-experience">
+      <section
+        id="tab-experience"
+        class="tab-pane hidden"
+        role="tabpanel"
+        aria-labelledby="tab-btn-experience"
+      >
         <div class="relative pl-6 border-l border-terminal-border space-y-8">
           <ExperienceEntry
             title="Independent Software Engineer"
@@ -207,37 +258,54 @@ const contactItems = [
       </section>
 
       <!-- ─── TAB: COMMUNITY ─── -->
-      <section id="tab-community" class="tab-pane hidden" role="tabpanel" aria-labelledby="tab-btn-community">
+      <section
+        id="tab-community"
+        class="tab-pane hidden"
+        role="tabpanel"
+        aria-labelledby="tab-btn-community"
+      >
         <div class="space-y-8">
           <!-- FOSDEM -->
           <div>
-            <h2 class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
+            <h2
+              class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
+            >
               <span class="text-terminal-accent-indigo">▸</span> FOSDEM
             </h2>
             <div class="p-4 rounded-md bg-terminal-surface border border-terminal-border">
               <p class="text-xs text-terminal-text leading-relaxed">
-                Attended <span class="text-terminal-text-bright font-semibold">FOSDEM</span> in Brussels for two consecutive years
-                (<span class="text-terminal-accent-cyan">2025</span> &
-                <span class="text-terminal-accent-cyan">2026</span>), deeply engaging with the European open-source developer ecosystem.
+                Attended <span class="text-terminal-text-bright font-semibold">FOSDEM</span> in Brussels
+                for two consecutive years (<span class="text-terminal-accent-cyan">2025</span> &
+                <span class="text-terminal-accent-cyan">2026</span>), deeply engaging with the
+                European open-source developer ecosystem.
               </p>
               <div class="flex gap-2 mt-3">
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20">Brussels</span>
-                <span class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20">Open Source</span>
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  >Brussels</span
+                >
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  >Open Source</span
+                >
               </div>
             </div>
           </div>
 
           <!-- Open Source Contributions -->
           <div>
-            <h2 class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
+            <h2
+              class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
+            >
               <span class="text-terminal-accent-indigo">▸</span> Open Source Contributions
             </h2>
             <div class="p-4 rounded-md bg-terminal-surface border border-terminal-border">
               <p class="text-xs text-terminal-text leading-relaxed">
-                Active participant in the open-source ethos. Focused on making the ecosystem better through
+                Active participant in the open-source ethos. Focused on making the ecosystem better
+                through
                 <span class="text-terminal-text-bright">documentation improvements</span>,
-                <span class="text-terminal-text-bright">typo fixes</span> in public repositories,
-                and <span class="text-terminal-text-bright">collaborative problem-solving</span>.
+                <span class="text-terminal-text-bright">typo fixes</span> in public repositories, and
+                <span class="text-terminal-text-bright">collaborative problem-solving</span>.
               </p>
             </div>
           </div>
@@ -246,7 +314,6 @@ const contactItems = [
 
       <!-- ─── TAB: CONTACT ─── -->
       <ContactSection items={contactItems} />
-
     </main>
 
     <Footer />
