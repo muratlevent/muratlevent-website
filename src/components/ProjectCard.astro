@@ -1,7 +1,7 @@
 ---
 import GithubIcon from './icons/GithubIcon.astro';
 
-type BadgeColor = 'indigo' | 'cyan' | 'green' | 'gray';
+type BadgeColor = 'indigo' | 'cyan' | 'green' | 'gray' | 'amber' | 'purple' | 'rose';
 
 interface Badge {
   text: string;
@@ -13,9 +13,10 @@ interface Props {
   title: string;
   description: string;
   badges: Badge[];
+  status?: string;
 }
 
-const { href, title, description, badges } = Astro.props;
+const { href, title, description, badges, status } = Astro.props;
 
 const colorClasses: Record<BadgeColor, string> = {
   indigo:
@@ -23,12 +24,13 @@ const colorClasses: Record<BadgeColor, string> = {
   cyan: 'bg-terminal-accent-cyan/10 text-terminal-accent-cyan border-terminal-accent-cyan/20',
   green: 'bg-terminal-accent-green/10 text-terminal-accent-green border-terminal-accent-green/20',
   gray: 'bg-terminal-text-muted/10 text-terminal-text-muted border-terminal-text-muted/20',
+  amber: 'bg-terminal-accent-amber/10 text-terminal-accent-amber border-terminal-accent-amber/20',
+  purple: 'bg-terminal-accent-purple/10 text-terminal-accent-purple border-terminal-accent-purple/20',
+  rose: 'bg-terminal-accent-rose/10 text-terminal-accent-rose border-terminal-accent-rose/20',
 };
 
 const Element = href ? 'a' : 'div';
-const elementProps = href
-  ? { href, target: '_blank', rel: 'noopener' }
-  : {};
+const elementProps = href ? { href, target: '_blank', rel: 'noopener' } : {};
 ---
 
 <Element
@@ -37,17 +39,34 @@ const elementProps = href
     href ? 'hover:border-terminal-accent-indigo/30 cursor-pointer' : 'cursor-default opacity-80'
   }`}
 >
-  <div class="flex items-center gap-2 mb-1.5">
-    {href?.includes('github.com') ? (
-      <GithubIcon
-        class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors"
-      />
-    ) : href ? (
-      <span class="text-xs text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors">↗</span>
-    ) : (
-      <span class="text-[10px] text-terminal-text-muted">🔒</span>
-    )}
-    <h3 class="text-xs font-semibold text-terminal-text-bright">{title}</h3>
+  <div class="flex items-start justify-between mb-1.5">
+    <div class="flex items-center gap-2">
+      {
+        href?.includes('github.com') ? (
+          <GithubIcon class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors" />
+        ) : href ? (
+          <span class="text-xs text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors">
+            ↗
+          </span>
+        ) : (
+          <span class="text-[10px] text-terminal-text-muted">🔒</span>
+        )
+      }
+      <h3 class="text-xs font-semibold text-terminal-text-bright">{title}</h3>
+    </div>
+    {
+      status && (
+        <span
+          class={`text-[9px] px-2 py-0.5 rounded-full border ${
+            status.toLowerCase() === 'live'
+              ? 'text-terminal-accent-green bg-terminal-accent-green/10 border-terminal-accent-green/20'
+              : 'text-orange-400 bg-orange-400/10 border-orange-400/20'
+          }`}
+        >
+          {status}
+        </span>
+      )
+    }
   </div>
   <p class="text-[10px] text-terminal-text-muted mb-2">{description}</p>
   <div class="flex flex-wrap gap-1">

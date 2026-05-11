@@ -16,6 +16,9 @@
   --color-terminal-accent-indigo: #818cf8;
   --color-terminal-accent-cyan: #22d3ee;
   --color-terminal-accent-green: #4ade80;
+  --color-terminal-accent-amber: #fbbf24;
+  --color-terminal-accent-purple: #c084fc;
+  --color-terminal-accent-rose: #fb7185;
 }
 
 /* ── Light mode overrides ── */
@@ -29,6 +32,9 @@ html.light {
   --color-terminal-accent-indigo: #6366f1;
   --color-terminal-accent-cyan: #0891b2;
   --color-terminal-accent-green: #16a34a;
+  --color-terminal-accent-amber: #d97706;
+  --color-terminal-accent-purple: #9333ea;
+  --color-terminal-accent-rose: #e11d48;
 }
 
 @layer base {

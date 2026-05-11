@@ -23,22 +23,22 @@ const publicProjects = [
     description: 'Interactive 3D mechanical keyboard demo',
     badges: [
       { text: 'JavaScript', color: 'indigo' as const },
-      { text: 'Three.js', color: 'cyan' as const },
+      { text: 'Three.js', color: 'rose' as const },
     ],
   },
   {
     href: 'https://github.com/muratlevent/ShopifyCategoryFetcher',
     title: 'Shopify Category Fetcher',
     description: 'API scraping tool',
-    badges: [{ text: 'Java', color: 'cyan' as const }],
+    badges: [{ text: 'Java', color: 'purple' as const }],
   },
   {
     href: 'https://github.com/muratlevent/tweetrends',
     title: 'X (Twitter) Trend Scraper',
     description: 'Trend keyword analysis scraper',
     badges: [
-      { text: 'Python', color: 'indigo' as const },
-      { text: 'Playwright', color: 'cyan' as const },
+      { text: 'Python', color: 'amber' as const },
+      { text: 'Playwright', color: 'amber' as const },
     ],
   },
   {
@@ -46,8 +46,8 @@ const publicProjects = [
     title: 'Gootrend',
     description: 'Google Trends keyword extraction tool',
     badges: [
-      { text: 'Python', color: 'indigo' as const },
-      { text: 'pytrends', color: 'cyan' as const },
+      { text: 'Python', color: 'amber' as const },
+      { text: 'pytrends', color: 'amber' as const },
     ],
   },
   {
@@ -55,8 +55,8 @@ const publicProjects = [
     title: 'Shopify App Store Scraper',
     description: 'Maintained fork with reliability and data extraction fixes',
     badges: [
-      { text: 'Python', color: 'indigo' as const },
-      { text: 'Scrapy', color: 'cyan' as const },
+      { text: 'Python', color: 'amber' as const },
+      { text: 'Scrapy', color: 'amber' as const },
       { text: 'Fork', color: 'green' as const },
     ],
   },
@@ -65,29 +65,28 @@ const publicProjects = [
     title: 'Quiz App',
     description: 'Kahoot-inspired backend',
     badges: [
-      { text: 'Spring Boot', color: 'cyan' as const },
-      { text: 'Java', color: 'cyan' as const },
+      { text: 'Java', color: 'purple' as const },
+      { text: 'Spring Boot', color: 'purple' as const },
     ],
   },
   {
     href: 'https://github.com/muratlevent/flightgram',
     title: 'Flightgram',
     description: 'Flight data tracking application',
-    badges: [
-      { text: 'TypeScript', color: 'indigo' as const },
-    ],
+    badges: [{ text: 'TypeScript', color: 'indigo' as const }],
   },
 ];
 
-const otherProjects = [
+const privateProjects = [
   {
     href: 'https://veralevent.vercel.app',
     title: 'Photographer Portfolio',
     description: 'Minimalist photography portfolio & CMS studio',
+    status: 'Live',
     badges: [
-      { text: 'Astro', color: 'indigo' as const },
-      { text: 'Sanity', color: 'cyan' as const },
-      { text: 'Live', color: 'green' as const },
+      { text: 'TypeScript', color: 'indigo' as const },
+      { text: 'Astro', color: 'rose' as const },
+      { text: 'Sanity', color: 'purple' as const },
     ],
   },
   {
@@ -102,7 +101,8 @@ const otherProjects = [
     title: 'n8n-linkedin',
     description: 'n8n workflow automation for LinkedIn',
     badges: [
-      { text: 'Automation', color: 'cyan' as const },
+      { text: 'TypeScript', color: 'indigo' as const },
+      { text: 'n8n', color: 'amber' as const },
       { text: 'Private', color: 'gray' as const },
     ],
   },
@@ -197,7 +197,10 @@ const contactItems = [
             >
               <div class="flex items-start justify-between mb-2">
                 <div class="flex items-center gap-2">
-                  <span class="text-xs text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors">↗</span>
+                  <span
+                    class="text-xs text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors"
+                    >↗</span
+                  >
                   <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead</h3>
                 </div>
                 <span
@@ -211,15 +214,15 @@ const contactItems = [
               </p>
               <div class="flex flex-wrap gap-1.5">
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-rose/10 text-terminal-accent-rose border border-terminal-accent-rose/20"
                   >React Native</span
                 >
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-rose/10 text-terminal-accent-rose border border-terminal-accent-rose/20"
                   >Expo</span
                 >
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-purple/10 text-terminal-accent-purple border border-terminal-accent-purple/20"
                   >Supabase</span
                 >
                 <span
@@ -237,7 +240,7 @@ const contactItems = [
                 <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead Mobile</h3>
                 <span
                   class="text-[10px] text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full border border-orange-400/20"
-                  >in development</span
+                  >in review</span
                 >
               </div>
               <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
@@ -246,15 +249,15 @@ const contactItems = [
               </p>
               <div class="flex flex-wrap gap-1.5">
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-rose/10 text-terminal-accent-rose border border-terminal-accent-rose/20"
                   >React Native</span
                 >
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-rose/10 text-terminal-accent-rose border border-terminal-accent-rose/20"
                   >Expo</span
                 >
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-indigo/10 text-terminal-accent-indigo border border-terminal-accent-indigo/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
                   >iOS</span
                 >
               </div>
@@ -275,7 +278,7 @@ const contactItems = [
                 >
               </div>
               <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
-                Teleprompter app for iOS and iPadOS.
+                Teleprompter app for iOS.
               </p>
               <div class="flex flex-wrap gap-1.5">
                 <span
@@ -283,16 +286,12 @@ const contactItems = [
                   >Swift</span
                 >
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-rose/10 text-terminal-accent-rose border border-terminal-accent-rose/20"
                   >SwiftUI</span
                 >
                 <span
                   class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
                   >iOS</span
-                >
-                <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
-                  >iPadOS</span
                 >
               </div>
             </div>
@@ -304,7 +303,9 @@ const contactItems = [
               <div class="flex items-start justify-between mb-2">
                 <div class="flex items-center gap-2">
                   <span class="text-[10px] text-terminal-text-muted">🔒</span>
-                  <h3 class="text-sm font-semibold text-terminal-text-bright">Tablet Prompter Lite</h3>
+                  <h3 class="text-sm font-semibold text-terminal-text-bright">
+                    Tablet Prompter Lite
+                  </h3>
                 </div>
                 <span
                   class="text-[10px] text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full border border-orange-400/20"
@@ -320,16 +321,12 @@ const contactItems = [
                   >Swift</span
                 >
                 <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-rose/10 text-terminal-accent-rose border border-terminal-accent-rose/20"
                   >SwiftUI</span
                 >
                 <span
                   class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
                   >iOS</span
-                >
-                <span
-                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
-                  >iPadOS</span
                 >
               </div>
             </div>
@@ -348,15 +345,15 @@ const contactItems = [
           </div>
         </div>
 
-        <!-- Other / Client Work -->
+        <!-- Private / Client Work -->
         <div class="mt-8">
           <h2
             class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
           >
-            <span>💼</span> Other / Client Work
+            <span>💼</span> Private / Client Work
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {otherProjects.map((project) => <ProjectCard {...project} />)}
+            {privateProjects.map((project) => <ProjectCard {...project} />)}
           </div>
         </div>
       </section>
@@ -435,8 +432,9 @@ const contactItems = [
             </h2>
             <div class="p-4 rounded-md bg-terminal-surface border border-terminal-border">
               <p class="text-xs text-terminal-text leading-relaxed">
-                Actively contributing to open-source projects — engaging with communities, submitting
-                pull requests, and collaborating with maintainers to improve tools I use daily.
+                Actively contributing to open-source projects — engaging with communities,
+                submitting pull requests, and collaborating with maintainers to improve tools I use
+                daily.
               </p>
             </div>
           </div>
