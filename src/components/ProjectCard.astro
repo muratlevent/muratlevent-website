@@ -1,7 +1,7 @@
 ---
 import GithubIcon from './icons/GithubIcon.astro';
 
-type BadgeColor = 'indigo' | 'cyan' | 'green';
+type BadgeColor = 'indigo' | 'cyan' | 'green' | 'gray';
 
 interface Badge {
   text: string;
@@ -9,7 +9,7 @@ interface Badge {
 }
 
 interface Props {
-  href: string;
+  href?: string;
   title: string;
   description: string;
   badges: Badge[];
@@ -22,19 +22,31 @@ const colorClasses: Record<BadgeColor, string> = {
     'bg-terminal-accent-indigo/10 text-terminal-accent-indigo border-terminal-accent-indigo/20',
   cyan: 'bg-terminal-accent-cyan/10 text-terminal-accent-cyan border-terminal-accent-cyan/20',
   green: 'bg-terminal-accent-green/10 text-terminal-accent-green border-terminal-accent-green/20',
+  gray: 'bg-terminal-text-muted/10 text-terminal-text-muted border-terminal-text-muted/20',
 };
+
+const Element = href ? 'a' : 'div';
+const elementProps = href
+  ? { href, target: '_blank', rel: 'noopener' }
+  : {};
 ---
 
-<a
-  href={href}
-  target="_blank"
-  rel="noopener"
-  class="block p-3 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-terminal-bg"
+<Element
+  {...elementProps}
+  class={`block p-3 rounded-md bg-terminal-surface border border-terminal-border transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-terminal-bg ${
+    href ? 'hover:border-terminal-accent-indigo/30 cursor-pointer' : 'cursor-default opacity-80'
+  }`}
 >
   <div class="flex items-center gap-2 mb-1.5">
-    <GithubIcon
-      class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors"
-    />
+    {href?.includes('github.com') ? (
+      <GithubIcon
+        class="w-3.5 h-3.5 text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors"
+      />
+    ) : href ? (
+      <span class="text-xs text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors">↗</span>
+    ) : (
+      <span class="text-[10px] text-terminal-text-muted">🔒</span>
+    )}
     <h3 class="text-xs font-semibold text-terminal-text-bright">{title}</h3>
   </div>
   <p class="text-[10px] text-terminal-text-muted mb-2">{description}</p>
@@ -47,4 +59,4 @@ const colorClasses: Record<BadgeColor, string> = {
       ))
     }
   </div>
-</a>
+</Element>

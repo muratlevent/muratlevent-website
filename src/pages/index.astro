@@ -69,6 +69,43 @@ const publicProjects = [
       { text: 'Java', color: 'cyan' as const },
     ],
   },
+  {
+    href: 'https://github.com/muratlevent/flightgram',
+    title: 'Flightgram',
+    description: 'Flight data tracking application',
+    badges: [
+      { text: 'TypeScript', color: 'indigo' as const },
+    ],
+  },
+];
+
+const otherProjects = [
+  {
+    href: 'https://veralevent.vercel.app',
+    title: 'Photographer Portfolio',
+    description: 'Minimalist photography portfolio & CMS studio',
+    badges: [
+      { text: 'Astro', color: 'indigo' as const },
+      { text: 'Sanity', color: 'cyan' as const },
+      { text: 'Live', color: 'green' as const },
+    ],
+  },
+  {
+    title: 'Monodish',
+    description: 'Food or restaurant application',
+    badges: [
+      { text: 'TypeScript', color: 'indigo' as const },
+      { text: 'Private', color: 'gray' as const },
+    ],
+  },
+  {
+    title: 'n8n-linkedin',
+    description: 'n8n workflow automation for LinkedIn',
+    badges: [
+      { text: 'Automation', color: 'cyan' as const },
+      { text: 'Private', color: 'gray' as const },
+    ],
+  },
 ];
 
 const contactItems = [
@@ -178,11 +215,17 @@ const contactItems = [
               </div>
             </div>
             <!-- PipeRead -->
-            <div
-              class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200"
+            <a
+              href="https://www.piperead.com/"
+              target="_blank"
+              rel="noopener"
+              class="group block p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-accent-indigo/30 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo"
             >
               <div class="flex items-start justify-between mb-2">
-                <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead</h3>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs text-terminal-text-muted group-hover:text-terminal-accent-indigo transition-colors">↗</span>
+                  <h3 class="text-sm font-semibold text-terminal-text-bright">pipeRead</h3>
+                </div>
                 <span
                   class="text-[10px] text-terminal-accent-green px-2 py-0.5 rounded-full border border-terminal-accent-green/20"
                   >live</span
@@ -210,6 +253,56 @@ const contactItems = [
                   >AI</span
                 >
               </div>
+            </a>
+
+            <!-- Tablet Prompter -->
+            <div
+              class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200"
+            >
+              <div class="flex items-start justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-terminal-text-muted">🔒</span>
+                  <h3 class="text-sm font-semibold text-terminal-text-bright">Tablet Prompter</h3>
+                </div>
+                <span
+                  class="text-[10px] text-terminal-text-muted bg-terminal-text-muted/10 px-2 py-0.5 rounded-full border border-terminal-text-muted/20"
+                  >private</span
+                >
+              </div>
+              <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
+                Teleprompter app for iOS and iPadOS.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  >Swift</span
+                >
+              </div>
+            </div>
+
+            <!-- Tablet Prompter Lite -->
+            <div
+              class="group p-4 rounded-md bg-terminal-surface border border-terminal-border hover:border-terminal-text-muted/30 transition-colors duration-200"
+            >
+              <div class="flex items-start justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] text-terminal-text-muted">🔒</span>
+                  <h3 class="text-sm font-semibold text-terminal-text-bright">Tablet Prompter Lite</h3>
+                </div>
+                <span
+                  class="text-[10px] text-terminal-text-muted bg-terminal-text-muted/10 px-2 py-0.5 rounded-full border border-terminal-text-muted/20"
+                  >private</span
+                >
+              </div>
+              <p class="text-xs text-terminal-text-muted mb-3 leading-relaxed">
+                Lightweight teleprompter for iOS.
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  class="px-2 py-0.5 text-[10px] rounded-full bg-terminal-accent-cyan/10 text-terminal-accent-cyan border border-terminal-accent-cyan/20"
+                  >Swift</span
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -223,6 +316,18 @@ const contactItems = [
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {publicProjects.map((project) => <ProjectCard {...project} />)}
+          </div>
+        </div>
+
+        <!-- Other / Client Work -->
+        <div class="mt-8">
+          <h2
+            class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
+          >
+            <span>💼</span> Other / Client Work
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {otherProjects.map((project) => <ProjectCard {...project} />)}
           </div>
         </div>
       </section>
