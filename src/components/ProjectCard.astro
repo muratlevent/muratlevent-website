@@ -35,8 +35,8 @@ const elementProps = href ? { href, target: '_blank', rel: 'noopener' } : {};
 
 <Element
   {...elementProps}
-  class={`block p-3 rounded-md bg-terminal-surface border border-terminal-border transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-terminal-bg ${
-    href ? 'hover:border-terminal-accent-indigo/30 cursor-pointer' : 'cursor-default opacity-80'
+  class={`block p-3 rounded-md bg-terminal-surface border border-terminal-border transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-terminal-bg ${
+    href ? 'hover:border-terminal-accent-indigo/30 hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(129,140,248,0.08)] cursor-pointer' : 'cursor-default opacity-80'
   }`}
 >
   <div class="flex items-start justify-between mb-1.5">
