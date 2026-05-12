@@ -159,7 +159,7 @@ const contactItems = [
 
           <!-- Decorative terminal info -->
           <div
-            class="text-xs text-terminal-text-muted space-y-1 pt-4 border-t border-terminal-border"
+            class="text-xs text-terminal-text-muted space-y-1.5 pt-4 border-t border-terminal-border"
           >
             <div class="flex flex-wrap items-center gap-2">
               <span class="text-terminal-accent-indigo mr-1">λ</span> Preferred stack:
@@ -172,6 +172,14 @@ const contactItems = [
               <span class="text-terminal-accent-indigo">λ</span> Editor: Neovim / VS Code · Terminal:
               Ghostty · Shell: Fish
             </p>
+            
+            <div id="system-logs-container" class="pt-3 mt-3 border-t border-terminal-border/30 space-y-1 font-mono text-[10px] opacity-80 min-h-[100px]">
+              <p><span class="text-terminal-accent-green font-semibold">SUCCESS</span> [system] initialized murat-core v2.0.4</p>
+              <p><span class="text-terminal-accent-cyan font-semibold">INFO</span>    [build] deploying pipeRead Mobile to App Store Connect...</p>
+              <p><span class="text-terminal-accent-cyan font-semibold">INFO</span>    [process] optimizing React Native navigation state</p>
+              <p><span class="text-terminal-accent-amber font-semibold">WARN</span>    [memory] high caffeine levels detected</p>
+              <p><span class="text-terminal-accent-rose font-semibold">CRIT</span>    [health] sleep.exe not found. overriding biological protocols...</p>
+            </div>
           </div>
         </div>
       </section>

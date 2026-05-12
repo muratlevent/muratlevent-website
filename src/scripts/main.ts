@@ -90,21 +90,106 @@ export function initTheme(): void {
 export function initTypewriter(): void {
   const target = document.getElementById('typewriter-target');
   const aboutContent = document.getElementById('about-content');
+  const cursor = document.getElementById('typewriter-cursor');
+  if (!target || !aboutContent || !cursor) return;
+
   const text = 'cat about.md';
   let i = 0;
 
   function typeChar(): void {
-    if (!target) return;
-
     if (i < text.length) {
-      target.textContent += text.charAt(i);
+      target!.textContent += text.charAt(i);
       i++;
       setTimeout(typeChar, 60 + Math.random() * 40);
     } else {
-      // Typing done — reveal bio content
-      setTimeout(() => {
-        aboutContent?.classList.add('visible');
-      }, 300);
+      // Done typing "cat about.md", pause then start typing the bio
+      setTimeout(startDOMTypewriter, 300);
+    }
+  }
+
+  function startDOMTypewriter(): void {
+    // Clone all children of aboutContent
+    const children = Array.from(aboutContent!.childNodes);
+    const nodesToType = children.map(node => node.cloneNode(true));
+    
+    // Empty the container and make it visible so we can type into it
+    aboutContent!.innerHTML = '';
+    aboutContent!.classList.remove('about-reveal');
+    aboutContent!.style.opacity = '1';
+    aboutContent!.style.animation = 'none';
+
+    let nodeIdx = 0;
+
+    function processNextNode(): void {
+      if (nodeIdx < nodesToType.length) {
+        typeDOMNode(nodesToType[nodeIdx], aboutContent!, cursor!, () => {
+          nodeIdx++;
+          processNextNode();
+        });
+      }
+    }
+
+    processNextNode();
+  }
+
+  function typeDOMNode(node: Node, container: HTMLElement, cursor: HTMLElement, callback: () => void): void {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.nodeValue || '';
+      
+      // If it's just whitespace (indentation), skip typing it out slowly
+      if (text.trim() === '') {
+        const textNode = document.createTextNode(text);
+        container.appendChild(textNode);
+        callback();
+        return;
+      }
+
+      const textNode = document.createTextNode('');
+      container.appendChild(textNode);
+      container.appendChild(cursor); // Move the cursor to right after the text node
+
+      let charIdx = 0;
+      function typeTextChar(): void {
+        if (charIdx < text.length) {
+          textNode.nodeValue += text.charAt(charIdx);
+          charIdx++;
+          // Fast typing for the rest of the content
+          setTimeout(typeTextChar, 2 + Math.random() * 8);
+        } else {
+          callback();
+        }
+      }
+      typeTextChar();
+      
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const el = node as HTMLElement;
+      const newEl = document.createElement(el.tagName);
+      
+      // Copy attributes
+      for (let i = 0; i < el.attributes.length; i++) {
+        newEl.setAttribute(el.attributes[i].name, el.attributes[i].value);
+      }
+      
+      container.appendChild(newEl);
+
+      const children = Array.from(el.childNodes);
+      let childIdx = 0;
+
+      function processChild(): void {
+        if (childIdx < children.length) {
+          typeDOMNode(children[childIdx], newEl, cursor, () => {
+            childIdx++;
+            processChild();
+          });
+        } else {
+          callback();
+        }
+      }
+      processChild();
+      
+    } else {
+      // Comments or other node types
+      callback();
     }
   }
 
