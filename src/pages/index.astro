@@ -369,7 +369,19 @@ const contactItems = [
           </div>
         </div>
 
-        <!-- Public Open Source -->
+        <!-- Private / Client Work -->
+        <div class="mb-8">
+          <h2
+            class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
+          >
+            <span>💼</span> Private / Client Work
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {privateProjects.map((project) => <ProjectCard {...project} />)}
+          </div>
+        </div>
+
+        <!-- Public / Open Source -->
         <div>
           <h2
             class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
@@ -378,18 +390,6 @@ const contactItems = [
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {publicProjects.map((project) => <ProjectCard {...project} />)}
-          </div>
-        </div>
-
-        <!-- Private / Client Work -->
-        <div class="mt-8">
-          <h2
-            class="text-xs font-bold text-terminal-text-muted uppercase tracking-widest mb-4 flex items-center gap-2"
-          >
-            <span>💼</span> Private / Client Work
-          </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {privateProjects.map((project) => <ProjectCard {...project} />)}
           </div>
         </div>
       </section>
