@@ -93,7 +93,7 @@ export function initTypewriter(): void {
   const cursor = document.getElementById('typewriter-cursor');
   if (!target || !aboutContent || !cursor) return;
 
-  const text = 'cat about.md';
+  const text = 'npx murat-cli';
   let i = 0;
 
   function typeChar(): void {
@@ -102,7 +102,6 @@ export function initTypewriter(): void {
       i++;
       setTimeout(typeChar, 60 + Math.random() * 40);
     } else {
-      // Done typing "cat about.md", pause then start terminal dump
       setTimeout(startTerminalDump, 300);
     }
   }
@@ -126,29 +125,37 @@ export function initTypewriter(): void {
 
     // Set up queue of elements to reveal
     const queue: { node: HTMLElement, parent: HTMLElement, delay: number }[] = [
-      { node: bioNode, parent: aboutContent!, delay: 300 },
+      { node: bioNode, parent: aboutContent!, delay: 1000 }, // long delay for the first fetch
       { node: logsContainer, parent: aboutContent!, delay: 0 }, // Instantly append empty container
-      { node: logNodes[0], parent: logsContainer, delay: 200 + Math.random() * 200 },
-      { node: logNodes[1], parent: logsContainer, delay: 50 + Math.random() * 100 },
-      { node: logNodes[2], parent: logsContainer, delay: 100 + Math.random() * 150 },
-      { node: logNodes[3], parent: logsContainer, delay: 50 + Math.random() * 100 },
-      { node: logNodes[4], parent: logsContainer, delay: 300 + Math.random() * 200 },
-      { node: statusNode, parent: aboutContent!, delay: 400 + Math.random() * 200 },
-      { node: decoNode, parent: aboutContent!, delay: 200 + Math.random() * 200 }
+      { node: logNodes[0], parent: logsContainer, delay: 300 + Math.random() * 200 },
+      { node: logNodes[1], parent: logsContainer, delay: 100 + Math.random() * 100 },
+      { node: logNodes[2], parent: logsContainer, delay: 150 + Math.random() * 150 },
+      { node: logNodes[3], parent: logsContainer, delay: 100 + Math.random() * 100 },
+      { node: logNodes[4], parent: logsContainer, delay: 400 + Math.random() * 200 },
+      { node: statusNode, parent: aboutContent!, delay: 500 + Math.random() * 200 },
+      { node: decoNode, parent: aboutContent!, delay: 300 + Math.random() * 200 }
     ];
 
     let qIdx = 0;
     const placeholder = document.createElement('div');
-    // Ensure placeholder has same height/font as logs if inside logs container
-    placeholder.className = 'flex items-center min-h-[1.5em]'; 
+    placeholder.className = 'flex items-center gap-2 min-h-[1.5em] text-terminal-accent-cyan font-mono text-sm opacity-80'; 
+    const spinnerSpan = document.createElement('span');
+    placeholder.appendChild(spinnerSpan);
+    placeholder.appendChild(cursor!);
+
+    const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+    let frameIdx = 0;
+    const spinnerInterval = setInterval(() => {
+      spinnerSpan.textContent = frames[frameIdx];
+      frameIdx = (frameIdx + 1) % frames.length;
+    }, 80);
 
     function processQueue(): void {
       if (qIdx < queue.length) {
         const item = queue[qIdx];
         
         if (item.delay > 0) {
-          // Put cursor on a new line while waiting
-          placeholder.appendChild(cursor!);
+          // Put spinner on a new line while waiting
           item.parent.appendChild(placeholder);
         }
 
@@ -163,6 +170,7 @@ export function initTypewriter(): void {
         }, item.delay);
       } else {
         // Done! Drop to a new terminal prompt
+        clearInterval(spinnerInterval);
         const finalPrompt = document.createElement('div');
         finalPrompt.className = 'mt-6 text-sm';
         finalPrompt.innerHTML = '<span class="text-terminal-accent-indigo">muratlevent@server</span>\n<span class="text-terminal-accent-cyan ml-1">~&gt;</span>\n<span class="ml-2"></span>';
