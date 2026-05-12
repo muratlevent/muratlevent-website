@@ -164,10 +164,10 @@ export function initTypewriter(): void {
       } else {
         // Done! Drop to a new terminal prompt
         const finalPrompt = document.createElement('div');
-        finalPrompt.className = 'mt-4 pt-2 flex items-center gap-2 text-terminal-text-muted text-xs font-mono';
-        finalPrompt.innerHTML = '<span class="text-terminal-accent-green">muratlevent@server</span> <span class="text-terminal-accent-indigo">~</span> <span class="text-terminal-text-muted">❯</span>';
+        finalPrompt.className = 'mt-6 text-sm';
+        finalPrompt.innerHTML = '<span class="text-terminal-accent-indigo">muratlevent@server</span>\n<span class="text-terminal-accent-cyan ml-1">~&gt;</span>\n<span class="ml-2"></span>';
         aboutContent!.appendChild(finalPrompt);
-        finalPrompt.appendChild(cursor!);
+        finalPrompt.lastElementChild!.appendChild(cursor!);
       }
     }
 
