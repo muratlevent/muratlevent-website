@@ -17,11 +17,14 @@ const { items } = Astro.props;
   <div class="mb-4 text-sm">
     <span class="text-terminal-accent-indigo">muratlevent@server</span>
     <span class="text-terminal-accent-cyan ml-1">~&gt;</span>
-    <span class="text-terminal-text-muted ml-2">cat contact.yml</span>
+    <span class="ml-2">
+      <span id="contact-typewriter-target" class="text-terminal-text-muted"></span>
+      <span id="contact-typewriter-cursor" class="typewriter-cursor"></span>
+    </span>
   </div>
 
-  <!-- YAML-styled config block -->
-  <div class="p-5 rounded-md bg-terminal-surface border border-terminal-border font-mono text-sm leading-loose">
+  <!-- YAML-styled config block (hidden initially) -->
+  <div id="contact-content" class="opacity-0 p-5 rounded-md bg-terminal-surface border border-terminal-border font-mono text-sm leading-loose">
     <div>
       <span class="text-terminal-accent-cyan">---</span>
     </div>

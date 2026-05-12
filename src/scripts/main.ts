@@ -1,4 +1,6 @@
 // Tab switching functionality
+let hasContactAnimated = false;
+
 export function initTabs(): void {
   const tabs = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
   const panes = document.querySelectorAll<HTMLElement>('.tab-pane');
@@ -21,6 +23,11 @@ export function initTabs(): void {
     });
 
     if (contentArea) contentArea.scrollTop = 0;
+
+    if (tabName === 'contact' && !hasContactAnimated) {
+      hasContactAnimated = true;
+      initContactTypewriter();
+    }
   }
 
   // Click handlers
@@ -62,6 +69,66 @@ export function initTabs(): void {
 
   // Initialize first tab
   activateTab('about');
+}
+
+function initContactTypewriter(): void {
+  const target = document.getElementById('contact-typewriter-target');
+  const contactContent = document.getElementById('contact-content');
+  const cursor = document.getElementById('contact-typewriter-cursor');
+  if (!target || !contactContent || !cursor) return;
+
+  const text = 'cat contact.yml';
+  let i = 0;
+
+  function typeChar(): void {
+    if (i < text.length) {
+      target!.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeChar, 60 + Math.random() * 40);
+    } else {
+      setTimeout(showLoader, 150);
+    }
+  }
+
+  function showLoader(): void {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'flex items-center gap-2 min-h-[1.5em] text-terminal-accent-cyan font-mono text-sm opacity-80'; 
+    const spinnerSpan = document.createElement('span');
+    placeholder.appendChild(spinnerSpan);
+    placeholder.appendChild(cursor!);
+
+    contactContent!.parentNode!.insertBefore(placeholder, contactContent);
+
+    const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+    let frameIdx = 0;
+    const spinnerInterval = setInterval(() => {
+      spinnerSpan.textContent = frames[frameIdx];
+      frameIdx = (frameIdx + 1) % frames.length;
+    }, 80);
+
+    setTimeout(() => {
+      clearInterval(spinnerInterval);
+      placeholder.remove();
+      dumpYaml();
+    }, 400 + Math.random() * 200); // 400-600ms realistic short loading time
+  }
+
+  function dumpYaml(): void {
+    // Show the YAML block all at once
+    contactContent!.style.opacity = '1';
+    
+    // Add final prompt
+    const finalPrompt = document.createElement('div');
+    finalPrompt.className = 'mt-6 text-sm';
+    finalPrompt.innerHTML = '<span class="text-terminal-accent-indigo">muratlevent@server</span>\n<span class="text-terminal-accent-cyan ml-1">~&gt;</span>\n<span class="ml-2"></span>';
+    
+    // Append the prompt after the YAML block
+    contactContent!.parentNode!.appendChild(finalPrompt);
+    finalPrompt.lastElementChild!.appendChild(cursor!);
+  }
+
+  // Start typewriter after a short delay
+  setTimeout(typeChar, 300);
 }
 
 // Theme toggle functionality
