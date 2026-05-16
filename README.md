@@ -55,7 +55,7 @@ For active projects, there are three recognized status levels. Unlike tech badge
 
 ### Projects Tab Hierarchy
 The Projects tab must follow this exact structural order to highlight priorities:
-1. **Currently Focus** (Active main projects like PipeRead)
+1. **Currently Focus** (Active main projects like pipeRead)
 2. **Private / Client Work** (Closed source, client projects)
 3. **Public / Open Source** (Open-source libraries and scripts)
 
