@@ -1,5 +1,5 @@
 ---
-type BadgeColor = 'indigo' | 'cyan' | 'green';
+type BadgeColor = 'indigo' | 'cyan' | 'green' | 'gray' | 'amber' | 'purple' | 'rose';
 
 interface Badge {
   text: string;
@@ -21,6 +21,10 @@ const colorClasses: Record<BadgeColor, string> = {
   indigo: 'bg-terminal-accent-indigo/10 text-terminal-accent-indigo border-terminal-accent-indigo/20',
   cyan: 'bg-terminal-accent-cyan/10 text-terminal-accent-cyan border-terminal-accent-cyan/20',
   green: 'bg-terminal-accent-green/10 text-terminal-accent-green border-terminal-accent-green/20',
+  gray: 'bg-terminal-text-muted/10 text-terminal-text-muted border-terminal-text-muted/20',
+  amber: 'bg-terminal-accent-amber/10 text-terminal-accent-amber border-terminal-accent-amber/20',
+  purple: 'bg-terminal-accent-purple/10 text-terminal-accent-purple border-terminal-accent-purple/20',
+  rose: 'bg-terminal-accent-rose/10 text-terminal-accent-rose border-terminal-accent-rose/20',
 };
 ---
 
